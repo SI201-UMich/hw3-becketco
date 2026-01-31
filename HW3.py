@@ -76,10 +76,12 @@ class CouponDispenser:
         if len(self.coupon_cards) == 0:
             return("The box is empty.")
         
-        if name in self.coupon_cards:
+        
+        if name in self.customer_roster:
             idx = self.customer_roster.index(name)
             coupon = self.coupon_cards[self.issued_indices[idx]]
             return f"That name already has a coupon: {coupon}"
+
         
         coupon_index = random.randrange(len(self.coupon_cards))
         self.customer_roster.append(name)
@@ -106,9 +108,9 @@ class CouponDispenser:
         # TODO: Implement per instructions 
         round_number = 1
         while True:
-
-            user_input = input(f"Round {round_number}- Enter a name (or a comma-separated list), or type 'show' or 'exit': ")
-
+            user_input = (
+            f"Round {round_number} - Enter a name (or a comma-separated list), or type 'show' or 'exit': "
+            )
             if user_input == "exit":
                 print("Goodbye")
                 break
@@ -145,10 +147,16 @@ class CouponDispenser:
             None
         """
         # TODO: Implement per instructions
-       
+        if not self.issued_indices:
+            print("Empty")
+            return
+
+        for i, coupon in enumerate(self.coupon_cards):
+            count = self.issued_indices.count(i)
+            print(f"{coupon} distribution count: {count}.")
 
 
-        pass
+        
 
 
 def main():
