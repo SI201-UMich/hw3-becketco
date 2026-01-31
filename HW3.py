@@ -104,24 +104,6 @@ class CouponDispenser:
         Reminder: Use lists only (no dictionaries).
         """
         # TODO: Implement per instructions 
-        pass
-
-    def tally_distribution(self):
-        """
-        Extra credit:
-        Print coupon distribution counts (NO sorting) using ONLY lists.
-
-          - If issued_indices is empty:
-              * print("Empty")
-              * return
-          - Otherwise:
-              * For each coupon in coupon_cards (in original order), print:
-                    "<coupon> distribution count: <count>."
-
-        Returns:
-            None
-        """
-        # TODO: Implement per instructions
         round_number = 1
         while True:
 
@@ -147,8 +129,26 @@ class CouponDispenser:
 
             round_number += 1
 
+    def tally_distribution(self):
+        """
+        Extra credit:
+        Print coupon distribution counts (NO sorting) using ONLY lists.
 
-        # pass
+          - If issued_indices is empty:
+              * print("Empty")
+              * return
+          - Otherwise:
+              * For each coupon in coupon_cards (in original order), print:
+                    "<coupon> distribution count: <count>."
+
+        Returns:
+            None
+        """
+        # TODO: Implement per instructions
+       
+
+
+        pass
 
 
 def main():
@@ -167,10 +167,10 @@ def main():
     ]
 
     # Uncomment the lines below as you implement each function.
-    # box = CouponDispenser(coupon_cards)
-    # box.distribute_session()
-    # box.tally_distribution()
-    pass
+    box = CouponDispenser(coupon_cards)
+    box.distribute_session()
+    box.tally_distribution()
+    # pass
 
 
 # -----------------------
