@@ -1,12 +1,12 @@
-# Name:
-# Student ID:
-# Email:
-# Who or what you worked with on this homework (including generative AI like ChatGPT):
+# Name: Becket Cook
+# Student ID: 04830779
+# Email: becketco@umich.edu
+# Who or what you worked with on this homework (including generative AI like ChatGPT): Tom Huang and chatgpt
 # If you worked with generative AI also add a statement for how you used it.
-# e.g.:
+# e.g.: I asked it to explain what the questions were asking for and to check spelling in my code 
 # Asked ChatGPT hints for debugging and suggesting the general structure of the code
 # Did your use of GenAI on this assignment align with your goals and guidelines in 
-#    your Gen AI contract? If not, why?
+#    your Gen AI contract? If not, why?: it did not because I would have prefered to ask a person for help and sometimes while working was unable to.
 
 import random
 import io
@@ -33,7 +33,13 @@ class CouponDispenser:
             coupon_cards (list[str]): list of possible coupons users can receive.
         """
         # TODO: Implement per instructions
-        pass
+
+        self.coupon_cards = coupon_cards
+        self.customer_roster = []
+        self.issued_indices = []
+
+
+        # pass
 
     def __str__(self):
         """
@@ -44,7 +50,12 @@ class CouponDispenser:
             str
         """
         # TODO: Implement per instructions
-        pass
+
+        if len(self.coupon_cards) ==0:
+            return ""
+        return "|".join(self.coupon_cards)
+
+        # pass
 
     def issue_coupon(self, name):
         """
@@ -61,7 +72,21 @@ class CouponDispenser:
             str: message as described above
         """
         # TODO: Implement per instructions
-        pass
+
+        if len(self.coupon_cards) == 0:
+            return("The box is empty.")
+        
+        if name in self.coupon_cards:
+            idx = self.customer_roster.index(name)
+            coupon = self.coupon_cards[self.issued_indices[idx]]
+            return f"That name already has a coupon: {coupon}"
+        
+        coupon_index = random.randrange(len(self.coupon_cards))
+        self.customer_roster.append(name)
+        self.issued_indices.append(coupon_index)
+
+        return self.coupon_cards[coupon_index]    
+            
 
     def distribute_session(self):
         """
@@ -97,7 +122,33 @@ class CouponDispenser:
             None
         """
         # TODO: Implement per instructions
-        pass
+        round_number = 1
+        while True:
+
+            user_input = input(f"Round {round_number}- Enter a name (or a comma-separated list), or type 'show' or 'exit': ")
+
+            if user_input == "exit":
+                print("Goodbye")
+                break
+            elif user_input == "show":
+                for i in range(len(self.customer_roster)):
+                    print(f"{self.customer_roster[i]}: {self.coupon_list[i]}")
+
+
+        
+            else:
+                pieces = user_input.split(",")
+
+                for text in pieces:
+                    name = text.strip()
+                    if name != "":
+                        result = self.issue_coupon(name)
+                        print(result)
+
+            round_number += 1
+
+
+        # pass
 
 
 def main():
@@ -399,5 +450,5 @@ def test():
 
 if __name__ == "__main__":
     main()
-    # test()
+    test()
 
