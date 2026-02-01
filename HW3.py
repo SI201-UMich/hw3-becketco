@@ -108,15 +108,16 @@ class CouponDispenser:
         # TODO: Implement per instructions 
         round_number = 1
         while True:
-            user_input = (
+            user_input = input(
             f"Round {round_number} - Enter a name (or a comma-separated list), or type 'show' or 'exit': "
             )
             if user_input == "exit":
-                print("Goodbye")
+                print("Goodbye!")
                 break
             elif user_input == "show":
                 for i in range(len(self.customer_roster)):
-                    print(f"{self.customer_roster[i]}: {self.coupon_list[i]}")
+                    coupon = self.coupon_cards[self.issued_indices[i]]
+                    print(f"{self.customer_roster[i]}: {coupon}")
 
 
         
@@ -159,25 +160,46 @@ class CouponDispenser:
         
 
 
+# def main():
+#     """
+#     Driver function:
+#       - Define the coupon_cards list (example coupons below)
+#       - Create a CouponDispenser
+#       - Start the interaction via distribute_session()
+#       - After exit, call tally_distribution() to print the distribution in the terminal
+#     """
+
+#     coupon_cards = [
+#         "10% off",
+#         "Free small coffee",
+#         "Buy 1 get 1 half off",
+#         "Free extra espresso shot",
+#     ]
+
+#     box = CouponDispenser(coupon_cards)
+#     box.distribute_session()
+#     box.tally_distribution()
 def main():
-    """
-    Driver function:
-      - Define the coupon_cards list (example coupons below)
-      - Create a CouponDispenser
-      - Start the interaction via distribute_session()
-      - After exit, call tally_distribution() to print the distribution in the terminal
-    """
-    coupon_cards = [
+    coupon_list = [
         "10% off",
         "Free small coffee",
         "Buy 1 get 1 half off",
         "Free extra espresso shot",
     ]
 
-    # Uncomment the lines below as you implement each function.
-    box = CouponDispenser(coupon_cards)
+    box = CouponDispenser(coupon_list)
     box.distribute_session()
     box.tally_distribution()
+
+    # coupon_cards = [
+    #     "10% off",
+    #     "Free small coffee",
+    #     "Buy 1 get 1 half off",
+    #     "Free extra espresso shot",
+    # ]
+
+    # # Uncomment the lines below as you implement each function.
+
     # pass
 
 
